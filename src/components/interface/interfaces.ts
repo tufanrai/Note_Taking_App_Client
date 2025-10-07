@@ -12,5 +12,5 @@ export interface IRegister {
 
 export interface INote {
   title: string;
-  note: string;
+  note?: string;
 }

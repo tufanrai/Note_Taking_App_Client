@@ -29,9 +29,3 @@ export const RegisterSchema = yup.object({
       "your re-entered password did not match the password"
     ),
 });
-
-// note schema
-export const NoteSchema = yup.object({
-  title: yup.string().required("please enter the title for your note"),
-  note: yup.string(),
-});

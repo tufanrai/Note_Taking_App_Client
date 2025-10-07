@@ -1,9 +1,17 @@
+"use client";
 import NoteCard from "@/components/cards/NoteCard";
-import Image from "next/image";
 import Link from "next/link";
 import { RiStickyNoteAddFill } from "react-icons/ri";
+import { useQuery } from "@tanstack/react-query";
+import { fetchNotes } from "../api/apiUrls";
 
 export default function Home() {
+  const { data, error } = useQuery({
+    queryKey: ["fetchNotes", "newNote"],
+    queryFn: fetchNotes,
+  });
+
+  console.log(data);
   return (
     <div className="w-full h-screen relative p-8">
       <h1 className="font-bold text-xl italic text-stone-800">Notes</h1>

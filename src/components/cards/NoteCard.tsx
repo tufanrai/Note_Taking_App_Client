@@ -5,8 +5,8 @@ import { GoTrash } from "react-icons/go";
 import Link from "next/link";
 
 interface IProps {
-  title: string;
-  note: string;
+  title?: string;
+  note?: string;
 }
 
 const NoteCard = ({ title, note }: IProps) => {
@@ -15,10 +15,10 @@ const NoteCard = ({ title, note }: IProps) => {
       <div className="max-w-68 rounded-md shadow-sm/30 shadow-blue-500">
         <div className="w-full p-5">
           <h3 className="font-semibold text-lg italic text-stone-800">
-            {title}
+            {title ? title : "Title"}
           </h3>
           <p className="max-h-22 h-screen overflow-hidden font-normal text-md text-stone-700">
-            {note}
+            {note ? note : "Note"}
           </p>
         </div>
         <div className="w-full bg-blue-200 flex items-center justify-start px-5 py-2">

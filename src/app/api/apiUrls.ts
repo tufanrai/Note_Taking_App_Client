@@ -35,7 +35,7 @@ export const createNote = async (data: INote) => {
 // fetch notes
 export const fetchNotes = async () => {
   try {
-    const response = await axiosInstance.get("/");
+    const response = await axiosInstance.get("/notes/");
     return response.data;
   } catch (err: any) {
     return err.response.data;

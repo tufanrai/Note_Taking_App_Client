@@ -10,16 +10,13 @@ import { logUser } from "@/app/api/apiUrls";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { LuEye, LuEyeClosed, LuMail } from "react-icons/lu";
 
 const LoginCard = () => {
   // initialising router to rout user from login to dashboard on success.
   const router = useRouter();
 
-  const [token, setToken] = useState<string>("");
-
-  useEffect(() => {
-    cookieStore.set("token", token);
-  }, []);
+  const [seePassword, setSeePassword] = useState<boolean>(false);
 
   //  mutating the data received from the login form on the client to the server.
   const { mutate, isPending } = useMutation({
@@ -27,12 +24,11 @@ const LoginCard = () => {
     mutationKey: ["validateUser"],
     onSuccess: (data) => {
       toast.success(data.message);
-      console.log(data);
-      Cookies.set("token", data.accessToken);
-      // setTimeout(() => {
-      //   reset();
-      //   router.replace("/");
-      // }, 1000);
+      Cookies.set("ticket", data.accessToken);
+      setTimeout(() => {
+        reset();
+        router.replace("/");
+      }, 3000);
     },
     onError: (err) => {
       toast.error(err.message);
@@ -62,12 +58,15 @@ const LoginCard = () => {
       >
         <div className="w-full flex flex-col items-start justify-center gap-1">
           <label className="font-medium text-md text-stone-700">E-mail</label>
-          <input
-            type="text"
-            {...register("email")}
-            placeholder="demomail@gmail.com"
-            className="w-full border border-stone-200 inset-shadow-xs rounded-sm px-5 py-1 font-medium text-sm text-stone-800 outline-none"
-          />
+          <div className="w-full relative">
+            <LuMail className="absolute top-2 right-4 font-bold text-lg text-stone-800" />
+            <input
+              type="text"
+              {...register("email")}
+              placeholder="demomail@gmail.com"
+              className="w-full border border-stone-200 inset-shadow-xs rounded-sm px-5 py-1 font-medium text-sm text-stone-800 outline-none"
+            />
+          </div>
           {errors && errors.email ? (
             <p className="w-full font-normal text-sm text-end text-red-500">
               {errors.email.message}
@@ -78,12 +77,35 @@ const LoginCard = () => {
         </div>
         <div className="w-full flex flex-col items-start justify-center gap-1">
           <label className="font-medium text-md text-stone-700">Password</label>
-          <input
-            type="password"
-            placeholder="Password"
-            {...register("password")}
-            className="w-full border border-stone-200 inset-shadow-xs rounded-sm px-5 py-1 font-medium text-sm text-stone-800 outline-none"
-          />
+          <div className="w-full relative">
+            {seePassword && seePassword ? (
+              <>
+                <LuEye
+                  className="absolute top-2 right-4 font-bold text-lg text-stone-800"
+                  onClick={() => setSeePassword(!seePassword)}
+                />
+                <input
+                  type="text"
+                  placeholder="Password"
+                  {...register("password")}
+                  className="w-full border border-stone-200 inset-shadow-xs rounded-sm px-5 py-1 font-medium text-sm text-stone-800 outline-none"
+                />
+              </>
+            ) : (
+              <>
+                <LuEyeClosed
+                  className="absolute top-2 right-4 font-bold text-lg text-stone-800"
+                  onClick={() => setSeePassword(!seePassword)}
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  {...register("password")}
+                  className="w-full border border-stone-200 inset-shadow-xs rounded-sm px-5 py-1 font-medium text-sm text-stone-800 outline-none"
+                />
+              </>
+            )}
+          </div>
           {errors && errors.password ? (
             <p className="w-full font-normal text-sm text-end text-red-500">
               {errors.password.message}
