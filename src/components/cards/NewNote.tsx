@@ -9,9 +9,12 @@ import { useMutation } from "@tanstack/react-query";
 import { createNote } from "@/app/api/apiUrls";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 const NewNote = () => {
   const router = useRouter();
+
+  const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
     mutationFn: createNote,
@@ -19,6 +22,7 @@ const NewNote = () => {
     onSuccess: (data) => {
       console.log(data);
       toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ["fetchNotes"] });
       setTimeout(() => {
         reset();
         router.replace("/");

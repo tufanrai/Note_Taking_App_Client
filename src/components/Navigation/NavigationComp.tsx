@@ -5,10 +5,14 @@ import { CgNotes } from "react-icons/cg";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 const NavigationComp = ({
   children,
 }: Readonly<{ children: React.ReactNode }>) => {
+  const removeCookiedata = () => {
+    Cookies.remove("ticket");
+  };
   return (
     <div className="max-w-[1280px] w-full h-screen flex items-start justify-center">
       <div className="max-w-[240px] w-full h-screen border-r border-neutral-400">
@@ -36,7 +40,10 @@ const NavigationComp = ({
             </Link>
           </li>
           <li className="w-full mt-auto flex items-center justify-center px-5">
-            <button className="max-w-30 w-full font-thin text-md text-white flex items-center justify-center py-2 px-5 rounded-md bg-red-500 ease duratio-250 cursor-pointer hover:bg-red-600">
+            <button
+              onClick={removeCookiedata}
+              className="max-w-30 w-full font-thin text-md text-white flex items-center justify-center py-2 px-5 rounded-md bg-red-500 ease duratio-250 cursor-pointer hover:bg-red-600"
+            >
               Log out
             </button>
           </li>

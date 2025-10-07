@@ -1,3 +1,4 @@
+"use client";
 import SpecificNote from "@/components/cards/SpecificNote";
 import React from "react";
 
