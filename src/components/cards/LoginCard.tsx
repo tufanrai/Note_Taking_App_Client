@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ILog } from "../interface/interfaces";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,10 +9,17 @@ import { useMutation } from "@tanstack/react-query";
 import { logUser } from "@/app/api/apiUrls";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const LoginCard = () => {
   // initialising router to rout user from login to dashboard on success.
   const router = useRouter();
+
+  const [token, setToken] = useState<string>("");
+
+  useEffect(() => {
+    cookieStore.set("token", token);
+  }, []);
 
   //  mutating the data received from the login form on the client to the server.
   const { mutate, isPending } = useMutation({
@@ -21,6 +28,11 @@ const LoginCard = () => {
     onSuccess: (data) => {
       toast.success(data.message);
       console.log(data);
+      Cookies.set("token", data.accessToken);
+      // setTimeout(() => {
+      //   reset();
+      //   router.replace("/");
+      // }, 1000);
     },
     onError: (err) => {
       toast.error(err.message);

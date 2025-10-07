@@ -2,7 +2,6 @@
 import React from "react";
 import { FcViewDetails } from "react-icons/fc";
 import { CgNotes } from "react-icons/cg";
-import { GoArchive } from "react-icons/go";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
 import Link from "next/link";
@@ -26,13 +25,6 @@ const NavigationComp = ({
               </span>
             </Link>
           </li>
-          <li className="w-full items-center justify-center">
-            <Link href={"/archive"}>
-              <span className="w-full h-10 flex items-center justify-center gap-2 font-medium text-md text-stone-800 cursor-pointer ease duration-300 hover:bg-neutral-400">
-                <GoArchive /> Archive
-              </span>
-            </Link>
-          </li>
           <li className="w-full px-5 mt-4">
             <hr className="w-full border-stone-400" />
           </li>
@@ -52,16 +44,18 @@ const NavigationComp = ({
       </div>
       <div className="w-full h-screen">
         <div className="w-full h-15 flex items-center justify-end px-5 border-b border-b-neutral-200 shadow-xs/30">
-          <div className="max-w-80 w-full h-10 flex items-center justify-center gap-2">
-            <div className="rounded-full w-10 h-10 flex items-center justify-center bg-stone-400 overflow-hidden">
-              <FaUserLarge className="font-black text-xl text-stone-600" />
+          <Link href="/setting/profile">
+            <div className="max-w-80 w-full h-10 flex items-center justify-center gap-2">
+              <div className="rounded-full w-10 h-10 flex items-center justify-center bg-stone-400 overflow-hidden">
+                <FaUserLarge className="font-black text-xl text-stone-600" />
+              </div>
+              <div className=" px-2">
+                <span className="font-medium text-md text-stone-800/50">
+                  <b>Tufan Rai</b>
+                </span>
+              </div>
             </div>
-            <div className=" px-2">
-              <span className="font-medium text-md text-stone-800/50">
-                <b>Tufan Rai</b>
-              </span>
-            </div>
-          </div>
+          </Link>
         </div>
         <div className="w-full h-screen">{children}</div>
       </div>
