@@ -7,7 +7,8 @@ export const logUser = async (data: ILog) => {
     const response = await axiosInstance.post("/auth/login", data);
     return response.data;
   } catch (err: any) {
-    return err.message;
+    console.log(err.response.data);
+    return err.response.data;
   }
 };
 
@@ -17,7 +18,7 @@ export const registerUser = async (data: IRegister) => {
     const response = await axiosInstance.post("/auth/register", data);
     return response.data;
   } catch (err: any) {
-    return err.message;
+    return err.response.data;
   }
 };
 
@@ -27,7 +28,7 @@ export const createNote = async (data: INote) => {
     const response = await axiosInstance.post("/notes/", data);
     return response.data;
   } catch (err: any) {
-    return err.message;
+    return err.response.data;
   }
 };
 
@@ -37,6 +38,6 @@ export const fetchNotes = async () => {
     const response = await axiosInstance.get("/");
     return response.data;
   } catch (err: any) {
-    return err.message;
+    return err.response.data;
   }
 };

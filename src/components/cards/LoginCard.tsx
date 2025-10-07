@@ -1,30 +1,93 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import { ILog } from "../interface/interfaces";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { LoginSchema } from "../schema/authForm.schema";
+import { useMutation } from "@tanstack/react-query";
+import { logUser } from "@/app/api/apiUrls";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const LoginCard = () => {
+  // initialising router to rout user from login to dashboard on success.
+  const router = useRouter();
+
+  //  mutating the data received from the login form on the client to the server.
+  const { mutate, isPending } = useMutation({
+    mutationFn: logUser,
+    mutationKey: ["validateUser"],
+    onSuccess: (data) => {
+      toast.success(data.message);
+      console.log(data);
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
+  // validating the proper inputs on the login form
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(LoginSchema),
+  });
+
+  // function that mutates login form data to the backend
+  const sendData = (data: ILog) => {
+    mutate(data);
+  };
   return (
-    <div className="max-w-110 w-full flex flex-col items-center justify-center gap-4 rounded-md shadow-sm/30 py-6 px-4">
+    <div className="max-w-110 w-full flex flex-col items-center justify-center gap-4 rounded-md shadow-lg/50 bg-neutral-100 shadow-blue-400 py-6 px-4">
       <h1 className="font-semibold text-xl text-stone-700">Login</h1>
-      <form className="w-full flex flex-col mt-2 gap-4">
+      <form
+        onSubmit={handleSubmit(sendData)}
+        className="w-full flex flex-col mt-2 gap-4"
+      >
         <div className="w-full flex flex-col items-start justify-center gap-1">
           <label className="font-medium text-md text-stone-700">E-mail</label>
           <input
             type="text"
+            {...register("email")}
             placeholder="demomail@gmail.com"
             className="w-full border border-stone-200 inset-shadow-xs rounded-sm px-5 py-1 font-medium text-sm text-stone-800 outline-none"
           />
+          {errors && errors.email ? (
+            <p className="w-full font-normal text-sm text-end text-red-500">
+              {errors.email.message}
+            </p>
+          ) : (
+            ""
+          )}
         </div>
         <div className="w-full flex flex-col items-start justify-center gap-1">
           <label className="font-medium text-md text-stone-700">Password</label>
           <input
             type="password"
             placeholder="Password"
+            {...register("password")}
             className="w-full border border-stone-200 inset-shadow-xs rounded-sm px-5 py-1 font-medium text-sm text-stone-800 outline-none"
           />
+          {errors && errors.password ? (
+            <p className="w-full font-normal text-sm text-end text-red-500">
+              {errors.password.message}
+            </p>
+          ) : (
+            ""
+          )}
         </div>
         <div>
-          <button className="w-full px-5 py-2 flex items-center justify-center font-medium text-md text-stone-800 bg-neutral-300 rounded-sm ease duration-300 hover:bg-neutral-400">
+          <button
+            type="submit"
+            disabled={isPending}
+            className={`w-full px-5 py-2 flex ${
+              isPending ? "cursor-not-allowed" : "cursor-pointer"
+            } items-center justify-center font-medium text-md text-stone-800 bg-blue-300 rounded-sm ease duration-300 hover:bg-blue-400`}
+          >
             Login
           </button>
         </div>

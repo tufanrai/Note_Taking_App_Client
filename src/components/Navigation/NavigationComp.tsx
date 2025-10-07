@@ -15,7 +15,7 @@ const NavigationComp = ({
       <div className="max-w-[240px] w-full h-screen border-r border-neutral-400">
         <ul className="w-full h-screen flex flex-col items-center justify-starts py-8">
           <li className="w-full flex items-center justify-center p-2">
-            <span className="flex items-center justify-center gap-2 font-bold text-xl text-blue-600 italic">
+            <span className="flex items-center justify-center gap-2 font-bold text-xl text-stone-800 italic">
               <FcViewDetails /> NoteMe!
             </span>
           </li>
