@@ -25,6 +25,7 @@ const LoginCard = () => {
     onSuccess: (data) => {
       toast.success(data.message);
       Cookies.set("ticket", data.accessToken);
+      Cookies.set("userId", data.data._id);
       setTimeout(() => {
         reset();
         router.replace("/");

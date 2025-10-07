@@ -3,8 +3,9 @@ import { ILog, IRegister, INote } from "@/components/interface/interfaces";
 import Cookies from "js-cookie";
 
 const endPoint = Cookies.get("page");
+const userId = Cookies.get("userId");
 
-// login api
+// login user
 export const logUser = async (data: ILog) => {
   try {
     const response = await axiosInstance.post("/auth/login", data);
@@ -15,10 +16,20 @@ export const logUser = async (data: ILog) => {
   }
 };
 
-// register api
+// register user
 export const registerUser = async (data: IRegister) => {
   try {
     const response = await axiosInstance.post("/auth/register", data);
+    return response.data;
+  } catch (err: any) {
+    return err.response.data;
+  }
+};
+
+// fetch user data
+export const fetchUserData = async () => {
+  try {
+    const response = await axiosInstance.get(`/user/${userId}`);
     return response.data;
   } catch (err: any) {
     return err.response.data;

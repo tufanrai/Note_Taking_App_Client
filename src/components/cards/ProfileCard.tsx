@@ -5,9 +5,18 @@ import { FaUserLarge } from "react-icons/fa6";
 import { GoTrash } from "react-icons/go";
 import { IoChevronBackSharp } from "react-icons/io5";
 import { MdOutlineEdit } from "react-icons/md";
+import { useQuery } from "@tanstack/react-query";
+import { fetchUserData } from "@/app/api/apiUrls";
 
 const ProfileCard = () => {
   const [edit, setEdit] = useState<boolean>(false);
+
+  const { data, error } = useQuery({
+    queryKey: ["fetchUserData"],
+    queryFn: fetchUserData,
+  });
+
+  console.log(data);
   return (
     <div className="max-w-110 w-full rounded-md shadow-sm/30 p-6">
       <h1 className="font-bold text-xl italic text-stone-600">Profile</h1>
@@ -19,14 +28,14 @@ const ProfileCard = () => {
       <div className="w-full flex flex-col items-start justify-center gap-1 mt-4 px-2">
         {edit && edit ? (
           <input
-            type="text"
-            defaultValue="Tufan Rai"
+            type="date"
+            defaultValue={data?.data?.full_name}
             className="font-medium text-md text-stone-800/50 px-5 py-2 w-full shadow-xs/30 inset-shadow-xs/30 outline-none"
           />
         ) : (
           <>
             <span className="font-medium text-md text-stone-800/50 px-5 py-2">
-              Tufan Rai
+              {data?.data?.full_name}
             </span>
             <hr className="w-full h-1 border-neutral-300" />
           </>
@@ -34,13 +43,13 @@ const ProfileCard = () => {
         {edit && edit ? (
           <input
             type="text"
-            defaultValue="tufan@gmail.com"
+            defaultValue={data?.data?.email}
             className="font-medium text-md text-stone-800/50 px-5 py-2 w-full shadow-xs/30 inset-shadow-xs/30 outline-none"
           />
         ) : (
           <>
             <span className="font-medium text-md text-stone-800/50 px-5 py-2">
-              tufan@gmail.com
+              {data?.data?.email}
             </span>
             <hr className="w-full h-1 border-neutral-300" />
           </>
@@ -48,12 +57,12 @@ const ProfileCard = () => {
         {edit && edit ? (
           <input
             type="text"
-            defaultValue="********"
+            defaultValue={data?.data?.birth}
             className="font-medium text-md text-stone-800/50 px-5 py-2 w-full shadow-xs/30 inset-shadow-xs/30 outline-none"
           />
         ) : (
           <span className="font-medium text-md text-stone-800/50 px-5 py-2">
-            ********
+            {data?.data?.birth}
           </span>
         )}
       </div>
