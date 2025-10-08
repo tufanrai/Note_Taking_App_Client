@@ -10,6 +10,12 @@ export interface IRegister {
   password: string;
 }
 
+export interface IUser {
+  full_name: string;
+  birth: string;
+  email: string;
+}
+
 export interface INote {
   title: string;
   note?: string;

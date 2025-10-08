@@ -37,7 +37,6 @@ const SpecificNote = () => {
     onSuccess: (data) => {
       toast.success(data?.message);
       updatedNote.invalidateQueries({ queryKey: ["fetchSpecificData"] });
-      router.refresh();
       setTimeout(() => {
         setEdit(!edit);
         window.location.reload();

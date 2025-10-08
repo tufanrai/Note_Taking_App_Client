@@ -29,3 +29,13 @@ export const RegisterSchema = yup.object({
       "your re-entered password did not match the password"
     ),
 });
+
+// update user schema
+export const UpdateUser = yup.object({
+  full_name: yup.string().required("please enter your full name"),
+  birth: yup.string().required("please enter your DOB"),
+  email: yup
+    .string()
+    .email("please enter a valid email")
+    .required("please enter your email"),
+});

@@ -4,6 +4,20 @@ import Cookies from "js-cookie";
 
 const userId = Cookies.get("userId");
 
+interface IProps {
+  endPoint: string;
+  title?: string;
+  note?: string;
+}
+
+interface IUser {
+  endPoint: string;
+  full_name?: string;
+  email?: string;
+  birth?: string;
+  password?: string;
+}
+
 // login user
 export const logUser = async (data: ILog) => {
   try {
@@ -19,6 +33,26 @@ export const logUser = async (data: ILog) => {
 export const registerUser = async (data: IRegister) => {
   try {
     const response = await axiosInstance.post("/auth/register", data);
+    return response.data;
+  } catch (err: any) {
+    return err.response.data;
+  }
+};
+
+// update user
+export const updateUserData = async ({ endPoint, ...data }: IUser) => {
+  try {
+    const resopnse = await axiosInstance.put(`/user/${endPoint}`, { ...data });
+    return resopnse.data;
+  } catch (err: any) {
+    return err.response.data;
+  }
+};
+
+// remove user data
+export const removeUserData = async (endPoint: string) => {
+  try {
+    const response = await axiosInstance.delete(`/user/${endPoint}`);
     return response.data;
   } catch (err: any) {
     return err.response.data;
@@ -64,12 +98,6 @@ export const specificNoteData = async (endPoint: String) => {
     return err.response.data;
   }
 };
-
-interface IProps {
-  endPoint: string;
-  title?: string;
-  note?: string;
-}
 
 // update specific note
 export const updateNoteData = async ({ endPoint, ...data }: IProps) => {

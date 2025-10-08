@@ -11,7 +11,11 @@ const NavigationComp = ({
 }: Readonly<{ children: React.ReactNode }>) => {
   const removeCookiedata = () => {
     Cookies.remove("ticket");
+    Cookies.remove("userId");
+    Cookies.remove("name");
   };
+
+  const user = Cookies.get("name") ?? "User";
   return (
     <div className="max-w-[1280px] w-full h-screen flex items-start justify-center">
       <div className="max-w-[240px] w-full h-screen border-r border-neutral-400">
@@ -57,7 +61,7 @@ const NavigationComp = ({
               </div>
               <div className=" px-2">
                 <span className="font-medium text-md text-stone-800/50">
-                  <b>Tufan Rai</b>
+                  <b>{user}</b>
                 </span>
               </div>
             </div>
