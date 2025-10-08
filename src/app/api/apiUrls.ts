@@ -2,7 +2,6 @@ import axiosInstance from "./axiosInstance";
 import { ILog, IRegister, INote } from "@/components/interface/interfaces";
 import Cookies from "js-cookie";
 
-const endPoint = Cookies.get("page");
 const userId = Cookies.get("userId");
 
 // login user
@@ -57,7 +56,7 @@ export const fetchNotes = async () => {
 };
 
 // fetch specific note
-export const specificNoteData = async () => {
+export const specificNoteData = async (endPoint: String) => {
   try {
     const response = await axiosInstance.get(`/notes/${endPoint}`);
     return response.data;
@@ -66,8 +65,24 @@ export const specificNoteData = async () => {
   }
 };
 
+interface IProps {
+  endPoint: string;
+  title?: string;
+  note?: string;
+}
+
+// update specific note
+export const updateNoteData = async ({ endPoint, ...data }: IProps) => {
+  try {
+    const resopnse = await axiosInstance.put(`/notes/${endPoint}`, { ...data });
+    return resopnse.data;
+  } catch (err: any) {
+    return err.response.data;
+  }
+};
+
 // delete specific note
-export const removeSpecificNote = async () => {
+export const removeSpecificNote = async (endPoint: string) => {
   try {
     const response = await axiosInstance.delete(`/notes/${endPoint}`);
     return response.data;

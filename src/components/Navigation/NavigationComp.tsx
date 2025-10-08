@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { FcViewDetails } from "react-icons/fc";
 import { CgNotes } from "react-icons/cg";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
@@ -19,7 +18,7 @@ const NavigationComp = ({
         <ul className="w-full h-screen flex flex-col items-center justify-starts py-8">
           <li className="w-full flex items-center justify-center p-2">
             <span className="flex items-center justify-center gap-2 font-bold text-xl text-stone-800 italic">
-              <FcViewDetails /> NoteMe!
+              NoteMe!
             </span>
           </li>
           <li className="w-full items-center justify-center mt-18">
