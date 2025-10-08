@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import NoteCard from "@/components/cards/NoteCard";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNotes } from "@/app/api/apiUrls";
@@ -11,6 +11,7 @@ const AllNotes = () => {
     queryKey: ["fetchNotes"],
     queryFn: fetchNotes,
   });
+
   return (
     <div className="w-full h-screen flex flex-wrap items-start jutify-start gap-4 p-8">
       {data && data?.data

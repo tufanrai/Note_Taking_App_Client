@@ -82,7 +82,7 @@ export const createNote = async (data: INote) => {
 // fetch notes
 export const fetchNotes = async () => {
   try {
-    const response = await axiosInstance.get("/notes/");
+    const response = await axiosInstance.get("/");
     return response.data;
   } catch (err: any) {
     return err.response.data;
@@ -92,7 +92,7 @@ export const fetchNotes = async () => {
 // fetch specific note
 export const specificNoteData = async (endPoint: String) => {
   try {
-    const response = await axiosInstance.get(`/notes/${endPoint}`);
+    const response = await axiosInstance.get(`/${endPoint}`);
     return response.data;
   } catch (err: any) {
     return err.response.data;
@@ -102,7 +102,7 @@ export const specificNoteData = async (endPoint: String) => {
 // update specific note
 export const updateNoteData = async ({ endPoint, ...data }: IProps) => {
   try {
-    const resopnse = await axiosInstance.put(`/notes/${endPoint}`, { ...data });
+    const resopnse = await axiosInstance.put(`/${endPoint}`, { ...data });
     return resopnse.data;
   } catch (err: any) {
     return err.response.data;
@@ -112,7 +112,7 @@ export const updateNoteData = async ({ endPoint, ...data }: IProps) => {
 // delete specific note
 export const removeSpecificNote = async (endPoint: string) => {
   try {
-    const response = await axiosInstance.delete(`/notes/${endPoint}`);
+    const response = await axiosInstance.delete(`/${endPoint}`);
     return response.data;
   } catch (err: any) {
     return err.response.data;

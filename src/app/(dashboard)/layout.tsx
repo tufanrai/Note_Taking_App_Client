@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import NavigationComp from "@/components/Navigation/NavigationComp";
+import { HigherOrderComp } from "@/components/Navigation/HigherOrderComp";
 
 const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
@@ -9,4 +11,4 @@ const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   );
 };
 
-export default layout;
+export default HigherOrderComp(layout);

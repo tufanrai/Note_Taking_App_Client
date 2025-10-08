@@ -5,14 +5,22 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const NavigationComp = ({
   children,
 }: Readonly<{ children: React.ReactNode }>) => {
+  const router = useRouter();
+
   const removeCookiedata = () => {
+    toast.success("Successfuly loged out");
+    Cookies.remove("name");
     Cookies.remove("ticket");
     Cookies.remove("userId");
-    Cookies.remove("name");
+    setTimeout(() => {
+      router.replace("/auth/login");
+    }, 1000);
   };
 
   const user = Cookies.get("name") ?? "User";
