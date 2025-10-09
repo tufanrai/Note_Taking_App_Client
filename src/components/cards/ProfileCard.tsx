@@ -77,7 +77,7 @@ const ProfileCard = () => {
   };
 
   return (
-    <div className="max-w-110 w-full rounded-md shadow-sm/30 p-6">
+    <div className="max-w-110 w-full md:rounded-md md:shadow-sm/30 p-6">
       <h1 className="font-bold text-xl italic text-stone-600">Profile</h1>
       <div className="w-full flex items-center justify-end gap-2 px-4 py-1">
         <Link

@@ -26,7 +26,7 @@ const NavigationComp = ({
 
   const user = Cookies.get("name") ?? "User";
   return (
-    <div className="max-w-[1280px] w-full h-screen flex items-start justify-center">
+    <div className="max-w-[1280px] w-full h-screen flex items-start justify-center bg-neutral-100 shadow-lg/30 shadow-white">
       <div className="max-w-[240px] w-full h-screen hidden md:block border-r border-neutral-400">
         <ul className="w-full h-screen flex flex-col items-center justify-starts py-8">
           <li className="w-full flex items-center justify-center p-2">
@@ -62,17 +62,17 @@ const NavigationComp = ({
         </ul>
       </div>
       <div className="w-full h-screen overflow-y-auto relative">
-        <div className="w-full h-15 flex items-center justify-end px-5 border-b border-b-neutral-200 shadow-xs/30">
-          <span className="flex mr-auto items-center justify-center gap-2 font-bold text-xl text-stone-800 italic">
+        <div className="w-full h-15 flex items-center justify-end px-5 border-b border-b-neutral-200 bg-neutral-200">
+          <span className="flex mr-auto items-center justify-center gap-2 block md:hidden font-bold text-xl text-stone-800 italic">
             NoteMe!
           </span>
           <Link href="/setting/profile">
-            <div className="max-w-80 w-full h-10 flex items-center justify-center gap-2">
-              <div className="rounded-full w-10 h-10 flex items-center justify-center bg-stone-400 overflow-hidden">
+            <div className="md:max-w-80 max-w-48 w-full h-10 flex items-center justify-center gap-2">
+              <div className="rounded-full md:w-10 md:h-10 w-8 h-8 flex items-center justify-center bg-stone-400 overflow-hidden">
                 <FaUserLarge className="font-black text-xl text-stone-600" />
               </div>
               <div className=" px-2">
-                <span className="font-medium text-md text-stone-800/50">
+                <span className="font-medium text-sm md:text-md text-stone-800/50">
                   <b>{user}</b>
                 </span>
               </div>
@@ -87,7 +87,7 @@ const NavigationComp = ({
             </button>
           </Link>
         </div>
-        <div className="absolute bottom-0 left-0 w-full md:hidden block border-t border-neutral-400 px-5 py-2">
+        <div className="absolute bottom-0 left-0 w-full md:hidden block bg-neutral-200 px-5 py-2">
           <ul className="w-full flex items-center justify-center gap-4">
             <li className="max-w-50 w-full h-10 relative">
               <Link href={"/"}>
