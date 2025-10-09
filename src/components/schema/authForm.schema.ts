@@ -12,7 +12,6 @@ export const LoginSchema = yup.object({
 // register schema
 export const RegisterSchema = yup.object({
   full_name: yup.string().required("please enter your full name"),
-  birth: yup.string().required("please enter your DOB"),
   email: yup
     .string()
     .email("please enter a valid email")

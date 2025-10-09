@@ -79,7 +79,7 @@ const NavigationComp = ({
             </div>
           </Link>
         </div>
-        <div className="w-full h-5/6 relative overflow-hidden">
+        <div className="w-full h-5/6 md:h-screen relative overflow-hidden">
           {children}
           <Link href={"/newnote"}>
             <button className="w-10 h-10 flex items-center justify-center absolute bottom-8 right-8 rounded-md bg-blue-500 cursor-pointer ease duration-200 hover:bg-blue-600 font-black text-xl text-white">

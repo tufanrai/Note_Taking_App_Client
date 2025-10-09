@@ -81,26 +81,6 @@ const LoginCard = () => {
           )}
         </div>
         <div className="w-full flex flex-col items-start justify-center gap-1">
-          <label className="font-medium text-md text-stone-700">
-            Date of Birth
-          </label>
-          <div className="w-full relative">
-            <LuCalendarDays className="absolute top-2 right-4 font-bold text-lg text-stone-800" />
-            <input
-              type="date"
-              {...register("birth")}
-              className="w-full border border-stone-200 inset-shadow-xs rounded-sm px-5 py-1 font-medium text-sm text-stone-300 outline-none"
-            />
-          </div>
-          {errors && errors.birth ? (
-            <p className="w-full font-normal text-sm text-end text-red-500">
-              {errors.birth.message}
-            </p>
-          ) : (
-            ""
-          )}
-        </div>
-        <div className="w-full flex flex-col items-start justify-center gap-1">
           <label className="font-medium text-md text-stone-700">E-mail</label>
           <div className="w-full relative">
             <LuMail className="absolute top-2 right-4 font-bold text-lg text-stone-800" />

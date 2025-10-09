@@ -60,7 +60,6 @@ const ProfileCard = () => {
       endPoint,
       full_name: data.full_name,
       email: data.email,
-      birth: data.birth,
     });
   };
 
