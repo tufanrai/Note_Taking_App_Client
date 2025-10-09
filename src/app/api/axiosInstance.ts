@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5001/api",
+  baseURL: "https://noteme-vudd.onrender.com/api",
   headers: {
     authorization: `BEARER ${Cookies.get("ticket")}`,
   },
