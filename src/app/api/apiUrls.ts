@@ -72,7 +72,7 @@ export const fetchUserData = async () => {
 // create notes
 export const createNote = async (data: INote) => {
   try {
-    const response = await axiosInstance.post("/notes/", data);
+    const response = await axiosInstance.post("/", data);
     return response.data;
   } catch (err: any) {
     return err.response.data;
