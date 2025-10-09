@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import NoteCard from "@/components/cards/NoteCard";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNotes } from "@/app/api/apiUrls";
