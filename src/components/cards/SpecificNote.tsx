@@ -70,7 +70,7 @@ const SpecificNote = () => {
       router.replace("/");
     }, 500);
   };
-
+  console.log(data?.data?.note.split("\n"));
   return (
     <div className="max-w-150 h-screen overflow-hidden w-full p-8">
       <div className="w-full flex items-center justify-end gap-2 px-4 py-1">
@@ -131,9 +131,20 @@ const SpecificNote = () => {
             className=" w-full h-4/5 font-normal text-md text-stone-800 text-start p-5 outline-none rounded-sm shadow-sm/30 mt-2"
           />
         ) : (
-          <span className=" w-full h-4/5 font-normal text-md text-stone-800 text-start p-5 outline-none overflow-y-auto">
-            {data?.data?.note}
-          </span>
+          <>
+            {data?.data && data?.data?.note
+              ? data?.data?.note
+                  .split("\n")
+                  .map((paragraph: string, index: number) => (
+                    <p
+                      key={index}
+                      className="w-full px-5 py-2 font-normal text-md text-stone-800"
+                    >
+                      {paragraph}
+                    </p>
+                  ))
+              : ""}
+          </>
         )}
         {edit && edit ? (
           <div className="w-full flex items-center justify-end gap-4 px-5 py-2">
