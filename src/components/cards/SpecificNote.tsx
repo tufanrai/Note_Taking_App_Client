@@ -72,7 +72,7 @@ const SpecificNote = () => {
   };
   console.log(data?.data?.note.split("\n"));
   return (
-    <div className="max-w-150 h-screen overflow-hidden w-full p-8">
+    <div className="max-w-150 h-screen overflow-y-auto overflow-x-hidden w-full p-8">
       <div className="w-full flex items-center justify-end gap-2 px-4 py-1">
         <Link
           onClick={() => {
